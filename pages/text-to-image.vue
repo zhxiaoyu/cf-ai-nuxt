@@ -39,12 +39,11 @@ const models = [
     '@cf/bytedance/stable-diffusion-xl-lightning',
     '@cf/lykon/dreamshaper-8-lcm',
 ];
-const selectedModel = ref<string>('');
+const selectedModel = ref(models[0]);
 const promptStr = ref<string>('');
 const generatedImage = ref<string | null>(null);
 const loading = ref(false);
 const showImageFullScreen = ref(false);
-selectedModel.value = models[0];
 
 const generateImage = async () => {
     loading.value = true;
