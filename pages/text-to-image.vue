@@ -1,37 +1,52 @@
 <template>
-    <div>
-        <h1>Text to Image</h1>
-        <form @submit.prevent="generateImage">
-            <div>
-                <label for="model">Select Model:</label>
-                <select v-model="selectedModel" required>
-                    <option value="@cf/bytedance/stable-diffusion-xl-lightning">Stable Diffusion XL Lightning</option>
-                    <option value="@cf/lykon/dreamshaper-8-lcm">Dreamshaper 8 LCM</option>
-                    <option value="@cf/stabilityai/stable-diffusion-xl-base-1.0">Stable Diffusion XL Base 1.0</option>
-                </select>
-            </div>
-            <div>
-                <label for="prompt">Enter Prompt:</label>
-                <input type="text" v-model="promptStr" required />
-            </div>
-            <button type="submit">Generate Image</button>
-        </form>
-        <div v-if="generatedImage">
-            <h2>Generated Image:</h2>
-            <img :src="generatedImage" alt="Generated Image" />
-        </div>
-    </div>
+    <v-container class="fill-height" fluid>
+        <v-row align="center" justify="center">
+            <v-col cols="12" md="8" lg="6">
+                <v-card>
+                    <v-card-title>
+                        Text-to-Image Generator
+                    </v-card-title>
+                    <v-card-text>
+                        <v-form @submit.prevent="generateImage">
+                            <v-select v-model="selectedModel" :items="models" label="选择模型" required />
+                            <v-text-field v-model="promptStr" label="请输入提示词" required />
+                            <v-btn color="primary" type="submit" :loading="loading">
+                                生成图像
+                            </v-btn>
+                        </v-form>
+                    </v-card-text>
+                </v-card>
+                <v-card v-if="generatedImage">
+                    <v-img :src="generatedImage" aspect-ratio="1.7" @click="showImageFullScreen = true"></v-img>
+                </v-card>
+            </v-col>
+        </v-row>
+
+        <v-dialog v-model="showImageFullScreen" fullscreen hide-overlay persistent>
+            <v-card v-if="generatedImage">
+                <v-img :src="generatedImage" @click="showImageFullScreen = false"></v-img>
+            </v-card>
+        </v-dialog>
+    </v-container>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import axios from 'axios';
 
+const models = [
+    '@cf/stabilityai/stable-diffusion-xl-base-1.0',
+    '@cf/bytedance/stable-diffusion-xl-lightning',
+    '@cf/lykon/dreamshaper-8-lcm',
+];
 const selectedModel = ref<string>('');
 const promptStr = ref<string>('');
 const generatedImage = ref<string | null>(null);
+const loading = ref(false);
+const showImageFullScreen = ref(false);
 
 const generateImage = async () => {
+    loading.value = true;
     try {
         let data = JSON.stringify({
             "model": selectedModel.value,
@@ -54,46 +69,13 @@ const generateImage = async () => {
             const blob = new window.Blob([res.data], { type: 'image/png' });
             const u = window.URL.createObjectURL(blob);
             generatedImage.value = u;
+            loading.value = false;
         })
     } catch (error) {
+        loading.value = false;
         console.error('Error generating image:', error);
     }
 };
-const validatePassword = async () => {
-    const storedPassword = localStorage.getItem('userPassword');
-    if (storedPassword) {
-        try {
-            const response = await axios.post('/api/auth', { password: storedPassword });
-            if (!response.data.success) {
-                promptPassword();
-            }
-        } catch (error) {
-            promptPassword();
-        }
-    } else {
-        promptPassword();
-    }
-};
-
-const promptPassword = async () => {
-    const userPassword = prompt('请输入密码:');
-    try {
-        const response = await axios.post('/api/auth', { password: userPassword });
-        if (response.data.success && userPassword) {
-            localStorage.setItem('userPassword', userPassword);
-        } else {
-            alert('密码错误，请重新输入');
-            promptPassword();
-        }
-    } catch (error) {
-        alert('密码错误，请重新输入');
-        promptPassword();
-    }
-};
-
-onMounted(() => {
-    validatePassword();
-});
 </script>
 
 <style scoped>

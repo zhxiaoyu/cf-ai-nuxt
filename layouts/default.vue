@@ -1,44 +1,17 @@
 <template>
-    <div class="wrapper">
-      <aside class="sidebar">
-        <ul>
-          <li><nuxt-link to="/">Home</nuxt-link></li>
-          <li><nuxt-link to="/text-to-image">Text to Image</nuxt-link></li>
-          <li><nuxt-link to="/text-generation">Text Generation</nuxt-link></li>
-          <li><nuxt-link to="/translation">Translation</nuxt-link></li>
-        </ul>
-      </aside>
-      <main class="content">
-        <NuxtPage />
-      </main>
-    </div>
-  </template>
-  
-  <style>
-  .wrapper {
-    display: flex;
-  }
-  .sidebar {
-    width: 250px;
-    background: #2c3e50;
-    color: white;
-    height: 100vh;
-    padding: 1em;
-  }
-  .sidebar ul {
-    list-style: none;
-    padding: 0;
-  }
-  .sidebar ul li {
-    margin: 1em 0;
-  }
-  .sidebar ul li a {
-    color: white;
-    text-decoration: none;
-  }
-  .content {
-    flex: 1;
-    padding: 2em;
-  }
-  </style>
-  
+    <v-app>
+        <NavBar />
+        <v-main>
+            <NuxtPage />
+        </v-main>
+        <AuthDialog v-if="authStore.showAuthDialog" />
+    </v-app>
+</template>
+
+<script setup lang="ts">
+import NavBar from '~/components/NavBar.vue';
+import AuthDialog from '~/components/AuthDialog.vue';
+import { useAuthStore } from '~/stores/auth';
+
+const authStore = useAuthStore();
+</script>
