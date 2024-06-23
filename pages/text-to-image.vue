@@ -8,10 +8,10 @@
                     </v-card-title>
                     <v-card-text>
                         <v-form @submit.prevent="generateImage">
-                            <v-select v-model="selectedModel" :items="models" label="选择模型" required />
-                            <v-text-field v-model="promptStr" label="请输入提示词" required />
+                            <v-select v-model="selectedModel" :items="models" label="Select a model" required />
+                            <v-text-field v-model="promptStr" label="Input prompt (prefer English)" required />
                             <v-btn color="primary" type="submit" :loading="loading">
-                                生成图像
+                                Generate Image
                             </v-btn>
                         </v-form>
                     </v-card-text>
@@ -44,6 +44,7 @@ const promptStr = ref<string>('');
 const generatedImage = ref<string | null>(null);
 const loading = ref(false);
 const showImageFullScreen = ref(false);
+selectedModel.value = models[0];
 
 const generateImage = async () => {
     loading.value = true;
