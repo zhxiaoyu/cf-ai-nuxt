@@ -22,8 +22,9 @@ const router = useRouter();
 const items = [
     { title: 'Home', icon: 'mdi-home', path: '/' },
     { title: 'Text to Image', icon: 'mdi-image', path: '/text-to-image' },
+    { title: 'Image to Image', icon: 'mdi-image-refresh', path: '/img-to-img' },
+    { title: 'Translation', icon: 'mdi-translate', path: '/translation' },
     { title: 'Text Generation', icon: 'mdi-text', path: '/text-generation' },
-    { title: 'Translation', icon: 'mdi-translate', path: '/translation' }
 ];
 
 const navigate = (item: { path: string }) => {

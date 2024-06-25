@@ -40,7 +40,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import axios from 'axios';
 import languages from '~/utils/language';
 import { useAuthStore } from '~/stores/auth';
 

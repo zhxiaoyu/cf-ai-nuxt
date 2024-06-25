@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     '/': { ssr: false },
     '/text-generation': { ssr: false },
     '/text-to-image': { ssr: false },
+    '/img-to-img': { ssr: false },
     '/translation': { ssr: false },
   },
 })
