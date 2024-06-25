@@ -42,7 +42,9 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import languages from '~/utils/language';
+import { useAuthStore } from '~/stores/auth';
 
+const authStore = useAuthStore();
 const models = [
     '@cf/meta/m2m100-1.2b',
 ];
@@ -74,22 +76,23 @@ const translateText = async () => {
             "target_lang": targetLang.value.value,
             "text": inputText.value
         });
-        axios({
+        fetch('/api/translation', {
             method: 'post',
-            maxBodyLength: Infinity,
-            url: '/api/translation',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `token ${localStorage.getItem('userPassword')}`
             },
-            data: data
+            body: data,
         }).then(res => {
-            if (res.data.success) {
-                translatedText.value = res.data.result.translated_text;
-            } else {
-                console.error(res.data.errors);
-                translatedText.value = 'Translation failed';
+            if (res.ok) {
+                res.json().then(res => {
+                    translatedText.value = res.result.translated_text;
+                    loading.value = false;
+                });
+            } else if (res.status === 401) {
+                authStore.showDialog();
+                loading.value = false;
             }
-            loading.value = false;
         })
     } catch (error) {
         console.error(error);

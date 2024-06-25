@@ -32,8 +32,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import axios from 'axios';
+import { useAuthStore } from '~/stores/auth';
 
+const authStore = useAuthStore();
 const models = [
     '@cf/stabilityai/stable-diffusion-xl-base-1.0',
     '@cf/bytedance/stable-diffusion-xl-lightning',
@@ -50,30 +51,29 @@ const generateImage = async () => {
     try {
         let data = JSON.stringify({
             "model": selectedModel.value,
-            "messages": [
-                {
-                    "content": promptStr.value
-                }
-            ]
+            "prompt": promptStr.value,
         });
-        axios({
+        fetch('/api/text2image', {
             method: 'post',
-            maxBodyLength: Infinity,
-            url: '/api/text2image',
+            body: data,
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `token ${localStorage.getItem('userPassword')}`
             },
-            responseType: 'arraybuffer',
-            data: data
         }).then(res => {
-            const blob = new window.Blob([res.data], { type: 'image/png' });
-            const u = window.URL.createObjectURL(blob);
-            generatedImage.value = u;
-            loading.value = false;
-        })
+            if (res.ok) {
+                res.blob().then(blob => {
+                    generatedImage.value = window.URL.createObjectURL(blob);
+                    loading.value = false;
+                });
+            }
+            else if (res.status === 401) {
+                authStore.showDialog();
+                loading.value = false;
+            }    
+        });
     } catch (error) {
         loading.value = false;
-        console.error('Error generating image:', error);
     }
 };
 </script>

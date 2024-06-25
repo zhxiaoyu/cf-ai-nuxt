@@ -20,7 +20,10 @@ export default defineNuxtConfig({
       },
     },
   },
-  plugins: [
-    '~/plugins/auth.ts'
-  ]
+  routeRules: {
+    '/': { ssr: false },
+    '/text-generation': { ssr: false },
+    '/text-to-image': { ssr: false },
+    '/translation': { ssr: false },
+  },
 })

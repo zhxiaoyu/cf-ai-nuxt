@@ -5,19 +5,16 @@
     <v-navigation-drawer app permanent>
         <v-list>
             <v-list-item v-for="item in items" :key="item.title" @click="navigate(item)">
-                <v-list-item-content>
                     <v-list-item-title>
                         <v-icon left>{{ item.icon }}</v-icon>
                         {{ item.title }}
                     </v-list-item-title>
-                </v-list-item-content>
             </v-list-item>
         </v-list>
     </v-navigation-drawer>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
