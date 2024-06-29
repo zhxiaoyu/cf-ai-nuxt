@@ -12,7 +12,7 @@
         </v-row>
         <v-row>
             <v-col cols="12">
-                <v-textarea v-model="prompt" label="Input prompt(prefer English)" auto-grow outlined required />
+                <v-textarea v-model="prompt" label="Input prompt (prefer English)" auto-grow outlined required />
             </v-col>
         </v-row>
         <v-row>
