@@ -2,19 +2,19 @@
     <v-container>
         <v-row>
             <v-col cols="12" md="6">
-                <v-select v-model="selectedModel" :items="models" label="选择模型" required />
+                <v-select v-model="selectedModel" :items="models" label="Select a model" required />
             </v-col>
             <v-col cols="12" md="6">
-                <v-file-input v-model="sourceImage" label="选择源图像" accept="image/*" show-size required
+                <v-file-input v-model="sourceImage" label="Upload an image" accept="image/*" show-size required
                     @change="onImageUpload" />
             </v-col>
         </v-row>
         <v-row>
             <v-col cols="12" md="1">
-                <v-btn @click="undoLastDraw" color="primary">撤销</v-btn>
+                <v-btn @click="undoLastDraw" color="primary">Undo</v-btn>
             </v-col>
             <v-col cols="12" md="1">
-                <v-btn @click="clearAll" color="primary">重置</v-btn>
+                <v-btn @click="clearAll" color="primary">Reset</v-btn>
             </v-col>
         </v-row>
         <v-row>
@@ -28,12 +28,12 @@
         </v-row>
         <v-row>
             <v-col cols="12" md="6">
-                <v-textarea v-model="prompt" label="输入提示词" required />
+                <v-textarea v-model="prompt" label="Input prompt (prefer English)" required />
             </v-col>
         </v-row>
         <v-row>
             <v-col cols="12">
-                <v-btn @click="generateImage" :loading="loading" color="primary">生成新图像</v-btn>
+                <v-btn @click="generateImage" :loading="loading" color="primary">Generate Image</v-btn>
             </v-col>
         </v-row>
         <v-row v-if="generatedImageUrl">

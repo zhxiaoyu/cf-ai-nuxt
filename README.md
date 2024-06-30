@@ -1,10 +1,34 @@
-# Nuxt 3 Minimal Starter
+# Cloudflare AI Web UI
+English | [简体中文](./README_CN.md)
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A web UI for Cloudflare Workers AI, which allows users to call multiple models of Cloudflare Workers AI.
 
-## Setup
+## Support models:
+-  Text to Image
+   -  @cf/stabilityai/stable-diffusion-xl-base-1.0
+   -  @cf/bytedance/stable-diffusion-xl-lightning
+   -  @cf/lykon/dreamshaper-8-lcm
+-  Image to Image
+   -  @cf/runwayml/stable-diffusion-v1-5-img2img
+-  Image Inpaint
+   -  @cf/runwayml/stable-diffusion-v1-5-inpainting
+-  Translation
+   -  @cf/meta/m2m100-1.2b
 
-Make sure to install the dependencies:
+## Deploy on Cloudflare Pages
+-  Fork this repository
+-  Create a Cloudflare Pages project
+-  Add the repository as a source
+-  Set the environment variables
+   -  `CF_ID`: Your Cloudflare account ID
+   -  `CF_TOKEN`: Your Cloudflare API token
+   -  `APP_PWD`: Your application password
+-  Deploy the project
+
+
+## Local Development
+
+Install the dependencies:
 
 ```bash
 # npm
@@ -19,9 +43,14 @@ yarn install
 # bun
 bun install
 ```
+Create a `.env` file in the root directory and set the following environment variables:
 
-## Development Server
-
+```bash
+# .env
+CF_ID = YOUR_CLOUDFLARE_ACCOUNT_ID
+CF_TOKEN = YOUR_CLOUDFLARE_API_TOKEN
+APP_PWD = YOUR_APPLICATION_PASSWORD
+```
 Start the development server on `http://localhost:3000`:
 
 ```bash
@@ -37,39 +66,3 @@ yarn dev
 # bun
 bun run dev
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
