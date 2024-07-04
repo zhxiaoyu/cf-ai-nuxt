@@ -11,7 +11,7 @@
         </v-row>
         <v-row>
             <v-col cols="12">
-                <v-textarea v-model="inputText" label="Input text" required rows="15" />
+                <v-textarea v-model="inputText" label="Input text (prefer English)" required rows="15" />
             </v-col>
         </v-row>
         <v-row>
