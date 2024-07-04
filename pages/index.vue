@@ -31,6 +31,11 @@
                     <li><i>@cf/meta/m2m100-1.2b</i></li>
                 </ul>
             </li>
+            <li><b>- Summary:</b>
+                <ul>
+                    <li><i>@cf/facebook/bart-large-cnn</i></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </template>

@@ -5,10 +5,10 @@
     <v-navigation-drawer app permanent>
         <v-list>
             <v-list-item v-for="item in items" :key="item.title" @click="navigate(item)">
-                    <v-list-item-title>
-                        <v-icon left>{{ item.icon }}</v-icon>
-                        {{ item.title }}
-                    </v-list-item-title>
+                <v-list-item-title>
+                    <v-icon left>{{ item.icon }}</v-icon>
+                    {{ item.title }}
+                </v-list-item-title>
             </v-list-item>
         </v-list>
     </v-navigation-drawer>
@@ -25,6 +25,7 @@ const items = [
     { title: 'Image to Image', icon: 'mdi-image-refresh', path: '/img-to-img' },
     { title: 'Image Inpaint', icon: 'mdi-image-edit', path: '/img-inpaint' },
     { title: 'Translation', icon: 'mdi-translate', path: '/translation' },
+    { title: 'Summarization', icon: 'mdi-text-box-check-outline', path: '/summarization' },
 ];
 
 const navigate = (item: { path: string }) => {

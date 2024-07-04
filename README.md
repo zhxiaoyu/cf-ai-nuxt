@@ -14,6 +14,8 @@ A web UI for Cloudflare Workers AI, which allows users to call multiple models o
    -  @cf/runwayml/stable-diffusion-v1-5-inpainting
 -  Translation
    -  @cf/meta/m2m100-1.2b
+-  Summary
+   -  @cf/facebook/bart-large-cnn
 
 ## Deploy on Cloudflare Pages
 -  Fork this repository

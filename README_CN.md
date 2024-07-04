@@ -14,6 +14,8 @@ Cloudflare Workers AI 的 Web UI，允许用户调用 Cloudflare Workers AI 的�
    -  @cf/runwayml/stable-diffusion-v1-5-inpainting
 -  翻译
    -  @cf/meta/m2m100-1.2b
+-  摘要
+   -  @cf/facebook/bart-large-cnn
 
 ## 部署到 Cloudflare Pages
 -  Fork 本仓库
