@@ -26,6 +26,12 @@
                     <li><i>@cf/runwayml/stable-diffusion-v1-5-inpainting</i></li>
                 </ul>
             </li>
+            <li><b>- Image to Text:</b>
+                <ul>
+                    <li><i>@cf/llava-hf/llava-1.5-7b-hf</i></li>
+                    <li><i>@cf/unum/uform-gen2-qwen-500m</i></li>
+                </ul>
+            </li>
             <li><b>- Translation:</b>
                 <ul>
                     <li><i>@cf/meta/m2m100-1.2b</i></li>

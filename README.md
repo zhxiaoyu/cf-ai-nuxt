@@ -12,6 +12,9 @@ A web UI for Cloudflare Workers AI, which allows users to call multiple models o
    -  @cf/runwayml/stable-diffusion-v1-5-img2img
 -  Image Inpaint
    -  @cf/runwayml/stable-diffusion-v1-5-inpainting
+-  Image to Text
+   -  @cf/llava-hf/llava-1.5-7b-hf
+   -  @cf/unum/uform-gen2-qwen-500m
 -  Translation
    -  @cf/meta/m2m100-1.2b
 -  Summary

@@ -24,6 +24,7 @@ const items = [
     { title: 'Text to Image', icon: 'mdi-image-plus', path: '/text-to-image' },
     { title: 'Image to Image', icon: 'mdi-image-refresh', path: '/img-to-img' },
     { title: 'Image Inpaint', icon: 'mdi-image-edit', path: '/img-inpaint' },
+    { title: 'Image to Text', icon: 'mdi-image-text', path: '/img-to-txt' },
     { title: 'Translation', icon: 'mdi-translate', path: '/translation' },
     { title: 'Summarization', icon: 'mdi-text-box-check-outline', path: '/summarization' },
 ];

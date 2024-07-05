@@ -12,6 +12,9 @@ Cloudflare Workers AI 的 Web UI，允许用户调用 Cloudflare Workers AI 的�
    -  @cf/runwayml/stable-diffusion-v1-5-img2img
 -  图像局部重绘
    -  @cf/runwayml/stable-diffusion-v1-5-inpainting
+-  以图生文
+   -  @cf/llava-hf/llava-1.5-7b-hf
+   -  @cf/unum/uform-gen2-qwen-500m
 -  翻译
    -  @cf/meta/m2m100-1.2b
 -  摘要
